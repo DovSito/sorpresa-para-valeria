@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una cosita para Valeria 💜</title>
+<style>
+:root{--ink:#392653;--purple:#7952a8;--lavender:#eadcf8;--pale:#fbf7ff;--pink:#f5e5f2}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:radial-gradient(circle at 15% 15%,#fff 0,transparent 28%),linear-gradient(135deg,#eee2fb,#f9eafa 55%,#e7e1ff);overflow-x:hidden}
+main{width:min(900px,92%);margin:0 auto;padding:42px 0 70px;text-align:center}
+h1,h2{font-weight:600}
+h1{font-size:clamp(2.1rem,6vw,3.5rem);margin:10px 0}
+h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+p{line-height:1.75}
+.intro{font-size:1.1rem;max-width:650px;margin:14px auto 28px}
+button{border:0;border-radius:999px;padding:13px 23px;background:var(--purple);color:white;font-size:1rem;cursor:pointer;box-shadow:0 7px 18px #7952a833;transition:.2s}
+button:hover{transform:translateY(-2px);background:#68418f}
+.panel{display:none;background:#ffffffc9;border:1px solid #fff;border-radius:24px;padding:28px;margin:28px auto;max-width:720px;box-shadow:0 14px 40px #50366b16;animation:rise .7s ease both}
+.panel.show{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.envelope-wrap{margin:30px auto 10px;cursor:pointer;width:min(320px,90%);height:190px;position:relative;filter:drop-shadow(0 12px 12px #573a7420)}
+.envelope{position:absolute;inset:35px 0 0;background:#cdb4e8;border-radius:10px}
+.envelope:before{content:"";position:absolute;inset:0;background:#b998d9;clip-path:polygon(0 0,50% 60%,100% 0)}
+.envelope:after{content:"";position:absolute;inset:0;background:#ddc9f0;clip-path:polygon(0 100%,50% 48%,100% 100%)}
+.flap{position:absolute;top:35px;left:0;width:100%;height:100px;background:#b28bd5;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s;z-index:2}
+.envelope-wrap.open .flap{transform:rotateX(180deg)}
+.envelope-label{position:absolute;z-index:3;top:105px;left:0;right:0;font-size:1.05rem;color:#fff}
+.small{font-size:.95rem;color:#725d85}
+.file{text-align:left;background:#f8f1ff;border-radius:16px;padding:20px;margin-top:18px}
+.file p{margin:9px 0}
+.acrostic{display:grid;gap:10px;text-align:left;max-width:650px;margin:22px auto}
+.line{display:flex;gap:14px;align-items:flex-start;background:#f8f1ff;padding:12px 15px;border-radius:12px;opacity:0;transform:translateY(8px);transition:.4s}
+.line.visible{opacity:1;transform:none}
+.letter{font-size:1.6rem;font-weight:bold;color:#865bb2;min-width:24px}
+.letter-text{line-height:1.5;padding-top:4px}
+.letter-text strong{font-weight:normal}
+.letter-text span{display:none}
+.line.visible .letter-text span{display:inline}
+.letter-text .placeholder{display:inline}
+.line.visible .letter-text .placeholder{display:none}
+.letter-text span{animation:fade .5s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.letter-content{text-align:left;white-space:pre-line;line-height:1.9;background:#fffaff;padding:24px;border-radius:16px;margin-top:20px}
+footer{margin-top:38px;color:#765e8d;font-size:.95rem}
+.star{position:fixed;color:#fff;opacity:.75;pointer-events:none;animation:twinkle 3s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.2;transform:scale(.8)}to{opacity:.9;transform:scale(1.2)}}
+@media(max-width:520px){main{padding-top:28px}.panel{padding:21px 16px}.file{padding:16px}.letter-content{padding:18px}}
+</style>
+</head>
+<body>
+<span class="star" style="top:9%;left:8%">✦</span><span class="star" style="top:18%;right:10%;animation-delay:1s">✧</span><span class="star" style="top:55%;left:4%;animation-delay:1.7s">✦</span><span class="star" style="top:76%;right:7%;animation-delay:.5s">✧</span>
+<main>
+  <div class="small">Un pequeño detalle hecho con cariño ✨</div>
+  <h1>¡Buenassss, Valeria!</h1>
+  <p class="intro">Preparé una cosita para ti. No es nada del otro mundo… aunque espero que te saque al menos una sonrisa. 🤭</p>
+  <button id="startBtn">Tengo curiosidad ✨</button>
+
+  <section class="panel" id="envelopePanel">
+    <h2>Una cosita para ti</h2>
+    <p class="small">Toca el sobre, fenómeno 🤭</p>
+    <div class="envelope-wrap" id="envelope" role="button" tabindex="0" aria-label="Abrir sobre">
+      <div class="envelope"></div><div class="flap"></div>
+      <div class="envelope-label">Para Valeria 💜</div>
+    </div>
+    <p class="small">Prometo que no hay tarea de Ingeniería Industrial dentro. JAJAJA.</p>
+  </section>
+
+  <section class="panel" id="filePanel">
+    <h2>Expediente confidencial</h2>
+    <p class="small">Documento de clasificación dudosa, elaborado por un homo-sapiens.</p>
+    <div class="file">
+      <p><strong>Nombre:</strong> Valeria</p>
+      <p><strong>Alias:</strong> Fenómeno, intensa, tóxica, torturadora y otros tantos.</p>
+      <p><strong>Especialidad:</strong> Molestar a cierto homo-sapiens.</p>
+      <p><strong>Habilidad especial:</strong> Convertir una conversación cualquiera en horas de charla.</p>
+      <p><strong>Diagnóstico:</strong> Insoportable… pero de las que alegran el día.</p>
+    </div>
+    <p>Se recomienda continuar observando el caso. Aunque, por alguna razón, el investigador no parece tener intención de alejarse. 👀</p>
+    <button id="toAcrostic">Hay algo más…</button>
+  </section>
+
+  <section class="panel" id="acrosticPanel">
+    <h2>Una palabra que empieza por tu nombre</h2>
+    <p class="small">Un pequeño acróstico. Las letras irán apareciendo una por una.</p>
+    <div class="acrostic" id="acrostic">
+      <div class="line"><div class="letter">V</div><div class="letter-text"><span>Vaya que tienes una forma peculiar de convertir cualquier charla en una aventura.</span><span class="placeholder">•••</span></div></div>
+      <div class="line"><div class="letter">A</div><div class="letter-text"><span>Alegre, espontánea y con una colección de ocurrencias que nunca se termina.</span><span class="placeholder">•••</span></div></div>
+      <div class="line"><div class="letter">L</div><div class="letter-text"><span>Loca, intensa y experta en molestar a este pobre homo-sapiens. JAJAJA.</span><span class="placeholder">•••</span></div></div>
+      <div class="line"><div class="letter">E</div><div class="letter-text"><span>Entre partidas y conversaciones, haces que el tiempo pase volando.</span><span class="placeholder">•••</span></div></div>
+      <div class="line"><div class="letter">R</div><div class="letter-text"><span>Risas, bromas y esos pequeños momentos que terminan siendo recuerdos bonitos.</span><span class="placeholder">•••</span></div></div>
+      <div class="line"><div class="letter">I</div><div class="letter-text"><span>Insoportable, sí… pero también alguien cuya compañía se disfruta muchísimo.</span><span class="placeholder">•••</span></div></div>
+      <div class="line"><div class="letter">A</div><div class="letter-text"><span>Aunque te burles de mí, me alegra que nuestros caminos se hayan cruzado.</span><span class="placeholder">•••</span></div></div>
+    </div>
+    <button id="revealBtn">Revelar primera letra 💜</button>
+    <p id="revealStatus" class="small">0 de 7 letras reveladas</p>
+    <button id="toLetter" style="display:none">Leer una última cosita…</button>
+  </section>
+
+  <section class="panel" id="letterPanel">
+    <h2>Unas palabras para ti</h2>
+    <div class="letter-content">Valeria:
+
+Buenassss, ¿cómo estás? JAJAJA. Si llegaste hasta aquí, significa que sobreviviste a mi pequeño expediente y a mis intentos de poesía. Espero que no estés preparando una venganza por tanta cursilería.
+
+Quería aprovechar este espacio para decirte que me alegra haberte conocido. Me gusta compartir tiempo contigo, jugar, conversar y terminar hablando de cualquier cosa. Incluso esas noches en las que una partida se convierte en una larga charla y se nos pasa la hora sin darnos cuenta.
+
+Tenemos nuestras bromas, nuestros apodos y esa manera tan nuestra de molestarnos. A veces me pregunto cómo alguien puede ser tan intensa, tóxica y torturadora… y aun así hacer que me alegre cuando aparece una notificación suya. Qué complicado caso, ¿no? JAJAJA.
+
+Fuera de bromas, disfruto mucho de tu compañía. Me gusta conocer poquito a poquito tus gustos, tus historias, tus ocurrencias y también esas cosas que te hacen ser tú. Me has hecho pasar momentos muy bonitos, y quería que lo supieras.
+
+No sé qué nuevas aventuras nos esperan, ni cuándo tendremos la oportunidad de compartir alguna en persona. Pero sí espero que nos queden muchas conversaciones, risas, partidas y recuerdos por crear.
+
+Y bueno… quizá no te lo diga siempre de esta manera, pero te has convertido en alguien especial para mí. No quería dejar pasar la oportunidad de recordártelo.
+
+Cuídate mucho, fenómeno. Y no te acostumbres demasiado a estos detalles, que luego te vuelves más insoportable. 🤭
+
+Con cariño,
+tu homo-sapiens 💜</div>
+  </section>
+  <footer>Hecho con cariño, unas cuantas bromas y un poquito de cursilería. 💜</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function show(id){$(id).classList.add('show');$(id).scrollIntoView({behavior:'smooth',block:'center'});}
+$('startBtn').addEventListener('click',()=>{show('envelopePanel');$('startBtn').style.display='none';});
+function openEnvelope(){if($('envelope').classList.contains('open'))return;$('envelope').classList.add('open');setTimeout(()=>show('filePanel'),650);}
+$('envelope').addEventListener('click',openEnvelope);
+$('envelope').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openEnvelope();}});
+$('toAcrostic').addEventListener('click',()=>{show('acrosticPanel');$('toAcrostic').style.display='none';});
+let revealed=0;
+$('revealBtn').addEventListener('click',()=>{
+ const lines=document.querySelectorAll('.line');
+ if(revealed<lines.length){lines[revealed].classList.add('visible');revealed++;$('revealStatus').textContent=`${revealed} de 7 letras reveladas`;}
+ if(revealed===lines.length){$('revealBtn').style.display='none';$('toLetter').style.display='inline-block';}
+ else{$('revealBtn').textContent='Siguiente letra ✨';}
+});
+$('toLetter').addEventListener('click',()=>{show('letterPanel');$('toLetter').style.display='none';});
+</script>
+</body>
+</html>
